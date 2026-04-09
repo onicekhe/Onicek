@@ -3,37 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Great Compression AI</title>
-  <meta name="description" content="Great Compression AI — a new framework for understanding AI, organization, and the future." />
-  <meta property="og:title" content="Great Compression AI" />
-  <meta property="og:description" content="Great Compression AI — a new framework for understanding AI, organization, and the future." />
+  <title>Onicek He — Researcher and Builder of Long-term Value Systems</title>
+  <meta name="description" content="Dr. He Xinhao (Onicek He) — Researcher and Builder of Long-term Value Systems. Professor, entrepreneur, and founder focused on how value is created, coordinated, transmitted, and restructured over time." />
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
-    /* ─── Reset & Base ─────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:   #0a0a0a;
-      --white:   #f8f7f4;
-      --gray-1:  #1c1c1e;
-      --gray-2:  #3a3a3c;
-      --gray-3:  #8e8e93;
-      --gray-4:  #d1d1d6;
-      --blue:    #1a2a4a;
-      --blue-lt: #2c3e6a;
-      --serif:   'EB Garamond', Georgia, serif;
-      --sans:    'Inter', system-ui, sans-serif;
+      --black:  #0c0c0c;
+      --white:  #f5f4f0;
+      --off:    #faf9f6;
+      --g1:     #1a1a1a;
+      --g2:     #3c3c3c;
+      --g3:     #7a7a7a;
+      --g4:     #c8c8c8;
+      --g5:     #e8e7e3;
+      --blue:   #1a2a42;
+      --serif:  'EB Garamond', Georgia, serif;
+      --sans:   'Inter', system-ui, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--white);
+      background: var(--off);
       color: var(--black);
       font-family: var(--sans);
       font-size: 16px;
@@ -41,569 +38,1130 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ─── Noise texture overlay ────────────────────────────────── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ─── Language Switch ──────────────────────────────────────── */
+    /* ── Language Toggle ── */
     #lang-toggle {
-      position: fixed;
-      top: 2rem;
-      right: 2.5rem;
-      z-index: 100;
       display: flex;
       align-items: center;
-      gap: 0;
+      gap: 2px;
       font-family: var(--sans);
-      font-size: 0.72rem;
-      font-weight: 400;
+      font-size: 0.68rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+      margin-left: 2rem;
+      border-left: 1px solid rgba(255,255,255,0.15);
+      padding-left: 1.5rem;
     }
 
     .lang-btn {
       background: none;
       border: none;
       cursor: pointer;
-      padding: 0.25rem 0.5rem;
-      color: var(--gray-3);
+      padding: 0.2rem 0.5rem;
+      color: rgba(255,255,255,0.45);
       transition: color 0.2s;
-      letter-spacing: 0.1em;
+      white-space: nowrap;
     }
 
-    .lang-btn.active {
-      color: var(--black);
-      font-weight: 500;
-    }
+    .lang-btn.active { color: rgba(255,255,255,0.9); font-weight: 500; }
+    .lang-sep { color: rgba(255,255,255,0.2); font-size: 0.6rem; }
 
-    .lang-sep {
-      color: var(--gray-4);
-      font-size: 0.65rem;
-      pointer-events: none;
-    }
+    /* when not on dark bg, switch colors */
+    body.light-nav .lang-btn { color: var(--g3); }
+    body.light-nav .lang-btn.active { color: var(--black); }
+    body.light-nav .lang-sep { color: var(--g4); }
 
-    /* ─── Sections ─────────────────────────────────────────────── */
-    section {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      padding: 7rem 2rem;
-    }
-
-    .inner {
-      max-width: 680px;
-      margin: 0 auto;
-    }
-
-    /* ─── Divider ──────────────────────────────────────────────── */
-    .rule {
-      width: 40px;
-      height: 1px;
-      background: var(--gray-4);
-      margin: 0 auto 3.5rem;
-    }
-
-    /* ─── Hero ─────────────────────────────────────────────────── */
-    #hero {
-      min-height: 100svh;
+    /* ── Nav ── */
+    nav#topnav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.6rem 2.5rem;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      text-align: center;
-      padding: 8rem 2rem 6rem;
-      background: var(--black);
-      color: var(--white);
+      justify-content: space-between;
+      transition: background 0.3s;
     }
 
-    /* subtle geometric line */
-    #hero::after {
-      content: '';
+    nav#topnav.scrolled {
+      background: rgba(12,12,12,0.92);
+      backdrop-filter: blur(8px);
+      padding: 1rem 2.5rem;
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: rgba(255,255,255,0.9); }
+
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+    }
+
+    /* ── Hero ── */
+    #hero {
+      position: relative;
+      min-height: 100svh;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-photo {
       position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, transparent, var(--gray-3));
+      right: 0; top: 0; bottom: 0;
+      width: 48%;
+      background-image: url('photo-web.jpg');
+      background-size: cover;
+      background-position: center top;
+      opacity: 0.28;
+      mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0.9) 60%, black 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0.9) 60%, black 100%);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      padding: 10rem 2.5rem 8rem;
+      max-width: 760px;
+      margin: 0 auto 0 8vw;
     }
 
     .hero-eyebrow {
       font-family: var(--sans);
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       font-weight: 400;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--gray-3);
-      margin-bottom: 2.5rem;
+      color: var(--g3);
+      margin-bottom: 2rem;
       opacity: 0;
-      animation: fadeUp 1s 0.2s forwards;
+      animation: fadeUp 0.9s 0.2s forwards;
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.4s forwards;
     }
 
     .hero-title {
       font-family: var(--serif);
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      font-weight: 400;
-      line-height: 1.1;
-      letter-spacing: -0.01em;
-      color: var(--white);
-      margin-bottom: 1.2rem;
-      opacity: 0;
-      animation: fadeUp 1s 0.45s forwards;
-    }
-
-    .hero-subtitle {
-      font-family: var(--serif);
-      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      font-size: clamp(1rem, 2.2vw, 1.3rem);
       font-weight: 400;
       font-style: italic;
-      color: var(--gray-3);
-      margin-bottom: 3.5rem;
+      color: var(--g3);
+      margin-bottom: 3rem;
       opacity: 0;
-      animation: fadeUp 1s 0.65s forwards;
+      animation: fadeUp 0.9s 0.6s forwards;
     }
 
     .hero-statement {
       font-family: var(--sans);
-      font-size: clamp(0.85rem, 1.8vw, 1rem);
+      font-size: clamp(0.88rem, 1.6vw, 1rem);
       font-weight: 300;
-      color: var(--gray-4);
+      color: var(--g4);
       max-width: 520px;
-      line-height: 1.9;
+      line-height: 1.95;
+      margin-bottom: 2rem;
       opacity: 0;
-      animation: fadeUp 1s 0.85s forwards;
+      animation: fadeUp 0.9s 0.8s forwards;
     }
 
-    .hero-statement strong {
-      color: var(--white);
-      font-weight: 400;
-    }
-
-    .hero-intro {
-      margin-top: 2.5rem;
+    .hero-body {
       font-family: var(--sans);
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 300;
-      color: var(--gray-3);
-      max-width: 480px;
+      color: var(--g3);
+      max-width: 500px;
       line-height: 2;
       opacity: 0;
-      animation: fadeUp 1s 1.05s forwards;
+      animation: fadeUp 0.9s 1s forwards;
     }
 
-    /* ─── Theory ───────────────────────────────────────────────── */
-    #theory {
-      background: var(--white);
+    .hero-cta {
+      margin-top: 3rem;
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.9s 1.2s forwards;
+    }
+
+    .btn-outline {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 0.75rem 1.8rem;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    /* ── Sections ── */
+    section {
+      position: relative;
+      padding: 7rem 2rem;
+    }
+
+    .inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .inner-wide {
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
     .section-label {
       font-family: var(--sans);
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       font-weight: 400;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--gray-3);
+      color: var(--g3);
+      margin-bottom: 1.5rem;
+    }
+
+    .rule {
+      width: 36px;
+      height: 1px;
+      background: var(--g4);
       margin-bottom: 2.5rem;
-      text-align: center;
     }
 
     .section-title {
       font-family: var(--serif);
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-size: clamp(1.7rem, 3.5vw, 2.5rem);
       font-weight: 400;
-      line-height: 1.25;
+      line-height: 1.2;
       color: var(--black);
-      text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
     }
 
     .section-body {
       font-family: var(--sans);
-      font-size: 0.95rem;
+      font-size: 0.93rem;
       font-weight: 300;
-      color: var(--gray-2);
+      color: var(--g2);
       line-height: 2;
-      text-align: center;
     }
 
-    .section-body p { margin-bottom: 1.4rem; }
+    .section-body p { margin-bottom: 1.3rem; }
     .section-body p:last-child { margin-bottom: 0; }
 
-    /* staggered lines for theory */
-    .theory-lines {
+    /* ── About ── */
+    #about { background: var(--off); }
+
+    /* ── What is LVS ── */
+    #lvs { background: var(--black); color: var(--white); }
+    #lvs .section-title { color: var(--white); }
+    #lvs .section-label { color: var(--g3); }
+    #lvs .rule { background: var(--g2); }
+
+    .lvs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2px;
+      margin: 3rem 0;
+    }
+
+    .lvs-card {
+      background: var(--g1);
+      padding: 2.5rem 2rem;
+      border-top: 1px solid var(--g2);
+    }
+
+    .lvs-num {
       font-family: var(--serif);
-      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: var(--g2);
+      line-height: 1;
+      margin-bottom: 1.2rem;
+    }
+
+    .lvs-card-title {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    .lvs-card-sub {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--g3);
+      margin-bottom: 1.2rem;
+    }
+
+    .lvs-card-body {
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--g3);
+      line-height: 1.9;
+    }
+
+    .lvs-closing {
+      font-family: var(--serif);
+      font-size: clamp(1rem, 2vw, 1.15rem);
       font-style: italic;
-      color: var(--gray-2);
-      line-height: 2.2;
-      text-align: center;
+      color: var(--g4);
+      line-height: 1.8;
+      border-top: 1px solid var(--g2);
+      padding-top: 2.5rem;
+      margin-top: 1rem;
+    }
+
+    /* ── Why Entrepreneurs ── */
+    #why { background: var(--white); }
+
+    /* ── Work / Six Areas ── */
+    #work { background: var(--off); }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1px;
+      margin-top: 3rem;
+      border: 1px solid var(--g5);
+    }
+
+    .work-card {
+      padding: 2.5rem 2rem;
+      border-right: 1px solid var(--g5);
+      border-bottom: 1px solid var(--g5);
+      background: var(--off);
+      transition: background 0.2s;
+    }
+
+    .work-card:hover { background: var(--white); }
+
+    .work-num {
+      font-family: var(--sans);
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      color: var(--g3);
+      margin-bottom: 1rem;
+    }
+
+    .work-title {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--black);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+
+    .work-sub {
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--g3);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .work-body {
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--g2);
+      line-height: 1.9;
+    }
+
+    /* ── Practice ── */
+    #practice { background: var(--black); color: var(--white); }
+    #practice .section-title { color: var(--white); }
+    #practice .section-label { color: var(--g3); }
+    #practice .rule { background: var(--g2); }
+    #practice .section-body { color: var(--g4); }
+
+    .practice-list {
       margin-top: 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.5rem;
     }
 
-    /* ─── Professor ────────────────────────────────────────────── */
-    #professor {
-      background: var(--black);
+    .practice-item-title {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 400;
       color: var(--white);
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--g2);
     }
 
-    #professor .section-title { color: var(--white); }
-
-    #professor .section-body {
-      color: var(--gray-4);
+    .practice-item-body {
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--g3);
+      line-height: 1.9;
     }
 
-    /* ─── Book ─────────────────────────────────────────────────── */
-    #book {
-      background: var(--white);
+    .institution-list {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--g3);
+      line-height: 2.1;
     }
 
-    /* book accent line */
-    .book-accent {
-      width: 1px;
-      height: 80px;
-      background: linear-gradient(to bottom, var(--gray-4), transparent);
-      margin: 0 auto 3rem;
+    /* ── Academic ── */
+    #academic { background: var(--off); }
+
+    .edu-list {
+      margin-top: 2rem;
+      list-style: none;
     }
 
-    /* ─── Contact ──────────────────────────────────────────────── */
-    #contact {
-      background: var(--gray-1);
-      color: var(--white);
-      padding-bottom: 0;
+    .edu-list li {
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--g2);
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--g5);
+      display: flex;
+      gap: 1.5rem;
+      align-items: baseline;
     }
 
+    .edu-list li:first-child { border-top: 1px solid var(--g5); }
+
+    .edu-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--g3);
+      flex-shrink: 0;
+      margin-top: 0.55rem;
+    }
+
+    /* ── Why Onicek ── */
+    #onicek { background: var(--white); }
+
+    .onicek-word {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--g5);
+      margin-bottom: 2rem;
+      line-height: 1;
+    }
+
+    .onicek-word span.hi { color: var(--black); }
+
+    /* ── Contact ── */
+    #contact { background: var(--g1); color: var(--white); }
     #contact .section-title { color: var(--white); }
+    #contact .section-label { color: var(--g3); }
+    #contact .rule { background: var(--g2); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1px;
+      margin: 2.5rem 0;
+    }
+
+    .contact-tag {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--g3);
+      padding: 1.2rem 0;
+      border-top: 1px solid var(--g2);
+    }
 
     .contact-email {
       display: inline-block;
       font-family: var(--sans);
       font-size: 0.88rem;
       font-weight: 300;
-      letter-spacing: 0.05em;
-      color: var(--gray-4);
+      color: var(--g4);
       text-decoration: none;
-      border-bottom: 1px solid var(--gray-2);
+      border-bottom: 1px solid var(--g2);
       padding-bottom: 2px;
       transition: color 0.2s, border-color 0.2s;
+      letter-spacing: 0.04em;
     }
 
-    .contact-email:hover {
-      color: var(--white);
-      border-color: var(--gray-3);
-    }
+    .contact-email:hover { color: var(--white); border-color: var(--g3); }
 
-    .contact-label {
-      font-family: var(--sans);
-      font-size: 0.78rem;
-      font-weight: 300;
-      color: var(--gray-3);
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-
-    /* ─── Footer ───────────────────────────────────────────────── */
+    /* ── Footer ── */
     footer {
-      position: relative;
-      z-index: 1;
-      background: var(--gray-1);
-      padding: 3rem 2rem 2.5rem;
-      text-align: center;
-      border-top: 1px solid #2a2a2c;
+      background: var(--g1);
+      padding: 2rem 2.5rem;
+      border-top: 1px solid #222;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
     .footer-name {
       font-family: var(--serif);
-      font-size: 0.9rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      color: var(--gray-3);
+      font-size: 0.88rem;
+      color: var(--g3);
     }
 
     .footer-copy {
-      margin-top: 0.6rem;
       font-family: var(--sans);
-      font-size: 0.68rem;
-      font-weight: 300;
+      font-size: 0.65rem;
       letter-spacing: 0.08em;
-      color: var(--gray-2);
+      color: var(--g2);
     }
 
-    /* ─── Fade-in on scroll ────────────────────────────────────── */
+    /* ── Scroll Reveal ── */
     .reveal {
       opacity: 0;
-      transform: translateY(18px);
+      transform: translateY(16px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ─── Hero animation ───────────────────────────────────────── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
+      from { opacity: 0; transform: translateY(14px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ─── Responsive ───────────────────────────────────────────── */
-    @media (max-width: 600px) {
-      #lang-toggle { top: 1.5rem; right: 1.5rem; }
-      section { padding: 5rem 1.5rem; }
-      #hero { padding: 7rem 1.5rem 5rem; }
-    }
-
-    /* ─── i18n visibility ──────────────────────────────────────── */
+    /* ── i18n ── */
     [data-lang="zh"] { display: none; }
     body.lang-zh [data-lang="en"] { display: none; }
     body.lang-zh [data-lang="zh"] { display: block; }
-    /* inline elements */
     span[data-lang="zh"] { display: none; }
     body.lang-zh span[data-lang="zh"] { display: inline; }
     body.lang-zh span[data-lang="en"] { display: none; }
+
+    @media (max-width: 600px) {
+      #lang-toggle { margin-left: 1rem; padding-left: 1rem; border-left: 1px solid rgba(255,255,255,0.12); }
+      nav#topnav { padding: 1.2rem 1.5rem; }
+      .hero-inner { margin: 0; padding: 8rem 1.5rem 6rem; }
+      section { padding: 5rem 1.5rem; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- ── Language Toggle ───────────────────────────────────────── -->
-  <nav id="lang-toggle" aria-label="Language">
-    <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
-    <span class="lang-sep">/</span>
-    <button class="lang-btn" id="btn-zh" onclick="setLang('zh')">中文</button>
+  <!-- ── Top Nav ── -->
+  <nav id="topnav">
+    <a href="#hero" class="nav-logo">Onicek He</a>
+    <ul class="nav-links">
+      <li><a href="#about" data-lang="en">About</a><a href="#about" data-lang="zh">关于</a></li>
+      <li><a href="#lvs" data-lang="en">Framework</a><a href="#lvs" data-lang="zh">框架</a></li>
+      <li><a href="#work" data-lang="en">Work</a><a href="#work" data-lang="zh">工作</a></li>
+      <li><a href="#practice" data-lang="en">Practice</a><a href="#practice" data-lang="zh">实践</a></li>
+      <li><a href="#contact" data-lang="en">Contact</a><a href="#contact" data-lang="zh">联系</a></li>
+    </ul>
+    <!-- Language Toggle inside nav -->
+    <div id="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" id="btn-zh" onclick="setLang('zh')">中文</button>
+    </div>
   </nav>
 
-  <!-- ══════════════════════════════════════════════════════════════
-       SECTION 1 — HERO
-  ═══════════════════════════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════════════ -->
   <section id="hero">
-    <!-- EN -->
-    <div data-lang="en" style="text-align:center;">
-      <p class="hero-eyebrow">A New Theory &nbsp;·&nbsp; A New Book</p>
-      <h1 class="hero-title">Great Compression AI</h1>
-      <p class="hero-subtitle">The Great Compression Theory</p>
-      <p class="hero-statement">
-        In the age of AI, the Great Compression Theory was first proposed by<br />
-        <strong>Professor Jin Li of the University of Hong Kong.</strong>
-      </p>
-      <p class="hero-intro">
-        A new way to think about AI, organization, and the future.<br /><br />
-        In the age of artificial intelligence, we may need a new language to understand
-        how knowledge, decision-making, organizational roles, and human judgment
-        are being compressed, reorganized, and transformed.
-      </p>
-    </div>
-    <!-- ZH -->
-    <div data-lang="zh" style="text-align:center;">
-      <p class="hero-eyebrow">一个新理论 &nbsp;·&nbsp; 一本新书</p>
-      <h1 class="hero-title">大压缩理论</h1>
-      <p class="hero-subtitle">Great Compression AI</p>
-      <p class="hero-statement">
-        AI时代，大压缩理论（Great Compression AI）<br />
-        由<strong>香港大学李晋教授</strong>率先提出。
-      </p>
-      <p class="hero-intro">
-        一种重新理解 AI、组织与未来的方式。<br /><br />
-        在人工智能快速发展的时代，我们也许需要一种新的语言，
-        去理解知识、决策、组织角色与人的判断，
-        正在如何被重新压缩、重组与改变。
-      </p>
+    <div class="hero-photo"></div>
+    <div class="hero-inner">
+
+      <!-- EN -->
+      <div data-lang="en">
+        <p class="hero-eyebrow">Dr. He Xinhao &nbsp;·&nbsp; Onicek He</p>
+        <h1 class="hero-name">Onicek He</h1>
+        <p class="hero-title">Researcher and Builder of Long-term Value Systems</p>
+        <p class="hero-statement">
+          I focus on how long-term value systems are created, coordinated,
+          transmitted, and continuously restructured in times of change.
+        </p>
+        <p class="hero-body">
+          What I study and build is not simply growth, nor governance alone —
+          but how a system continues to create value, sustain collaboration,
+          transmit trust, and keep growing through change.<br /><br />
+          From brand and marketing to organization and governance; from
+          foundations and philanthropy to AI transformation, DBA development,
+          and family succession — I keep returning to the same question:
+          what truly endures across cycles is a long-term value system.
+        </p>
+        <div class="hero-cta">
+          <a href="#about" class="btn-outline">About Me</a>
+          <a href="#work" class="btn-outline">Work &amp; Research</a>
+        </div>
+      </div>
+
+      <!-- ZH -->
+      <div data-lang="zh">
+        <p class="hero-eyebrow">贺欣浩博士 &nbsp;·&nbsp; Onicek He</p>
+        <h1 class="hero-name">贺欣浩</h1>
+        <p class="hero-title">长期价值系统的研究者与建构者</p>
+        <p class="hero-statement">
+          我专注于长期价值系统如何被创造，如何被协同，如何被传承，
+          以及如何在时代变化中被持续重构。
+        </p>
+        <p class="hero-body">
+          我研究和实践的，不只是增长，也不只是治理，而是一个系统如何持续创造价值、
+          维持协作、传递信任，并在变化中继续生长。<br /><br />
+          从品牌与营销，到组织与治理；从基金会与公益，到 AI 转型、DBA 成长与家族传承，
+          我持续围绕同一个命题工作：真正能够穿越周期的，是一套长期价值系统。
+        </p>
+        <div class="hero-cta">
+          <a href="#about" class="btn-outline">关于我</a>
+          <a href="#work" class="btn-outline">工作与研究</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════════
-       SECTION 2 — THEORY
-  ═══════════════════════════════════════════════════════════════ -->
-  <section id="theory">
+  <!-- ══════════════════════════════════════════════════════
+       ABOUT
+  ══════════════════════════════════════════════════════ -->
+  <section id="about">
     <div class="inner">
+
       <!-- EN -->
       <div data-lang="en" class="reveal">
-        <p class="section-label">Theory</p>
+        <p class="section-label">About</p>
         <div class="rule"></div>
-        <h2 class="section-title">A Theory Still Unfolding</h2>
+        <h2 class="section-title">A Practitioner Who Became a Scholar.<br />A Scholar Who Remains a Builder.</h2>
         <div class="section-body">
-          <p>Great Compression AI is not just about technological progress.</p>
-          <p>It is about what happens when information, processes, roles,<br />
-             knowledge, and judgment are continuously compressed by AI.</p>
-        </div>
-        <div class="theory-lines">
-          As compression deepens, organizations will change.<br />
-          Institutions will change.<br />
-          And the place of human beings inside systems<br />
-          may also need to be redefined.
+          <p>Dr. He Xinhao — known as Onicek He — is a professor, entrepreneur, and organizational founder whose work spans the full arc from real-world practice to rigorous academic inquiry. Over more than a decade, he has built platforms, designed institutional mechanisms, and advanced foundation development, while simultaneously developing a systematic framework for understanding how individuals, organizations, brands, foundations, and families construct value that lasts.</p>
+          <p>Unlike those who come from a single discipline or a single professional track, his path crosses multiple systems: the commercial world of brand, creativity, and platform structure; the complex coordination systems of organizations; the institutional logic of foundations and nonprofits; and the translation of experience into communicable, iterable methodology through doctoral training and research.</p>
+          <p>He is not studying a single management topic. He is working on a larger question: how long-term value systems are truly built.</p>
         </div>
       </div>
+
       <!-- ZH -->
       <div data-lang="zh" class="reveal">
-        <p class="section-label">理论</p>
+        <p class="section-label">关于</p>
         <div class="rule"></div>
-        <h2 class="section-title">一个仍在展开中的理论</h2>
+        <h2 class="section-title">从实践者到学者，<br />从学者到建构者。</h2>
         <div class="section-body">
-          <p>大压缩理论关注的，并不只是技术如何进步。</p>
-          <p>它更关注的是：当信息、流程、角色、知识与判断<br />
-             不断被 AI 压缩之后，究竟会发生什么。</p>
-        </div>
-        <div class="theory-lines">
-          随着压缩不断加深，<br />
-          组织会改变，<br />
-          制度会改变，<br />
-          而人类在系统中的位置，<br />
-          也可能需要被重新定义。
+          <p>贺欣浩博士（Onicek He）是一位兼具企业家实践、长期行业评估经验与系统性学术训练的商学院教授与组织创建者。过去十余年，他持续在现实世界中创建平台、设计机制、推动基金会发展，也在教学与研究中不断总结：一个人、一个组织、一个品牌、一个基金会，甚至一个家族，究竟如何建立真正可持续的长期价值。</p>
+          <p>与许多只来自单一学科或单一职业背景的人不同，他的路径横跨多个系统：商业世界中的品牌、创意、平台与行业结构；组织层面的复杂协作系统；公益领域中的基金会与非营利制度；以及通过博士训练与研究工作，把经验转化为可以解释、传播和迭代的方法论。</p>
+          <p>他并不只是在研究单一的管理课题，而是在持续围绕一个更大的问题工作：长期价值系统，如何被真正建立。</p>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════════
-       SECTION 3 — PROFESSOR
-  ═══════════════════════════════════════════════════════════════ -->
-  <section id="professor">
-    <div class="inner">
+  <!-- ══════════════════════════════════════════════════════
+       LONG-TERM VALUE SYSTEM
+  ══════════════════════════════════════════════════════ -->
+  <section id="lvs">
+    <div class="inner-wide">
+
       <!-- EN -->
       <div data-lang="en" class="reveal">
-        <p class="section-label" style="color:var(--gray-3);">About the Author</p>
+        <p class="section-label">Framework</p>
         <div class="rule"></div>
-        <h2 class="section-title">About Professor Jin Li</h2>
-        <div class="section-body" style="color:var(--gray-4);">
-          <p>
-            Prof. Jin Li is Professor at HKU Business School,
-            Zhang Yonghong Professor in Economics and Strategy,
-            Area Head of Management and Strategy, and Director of the
-            Centre for AI, Management and Organization at the
-            University of Hong Kong.
-          </p>
-          <p>
-            His work sits at the intersection of economics, organization,
-            incentives, and emerging technological change.
-          </p>
+        <h2 class="section-title" style="color:var(--white);">What Is a Long-term Value System?</h2>
+        <div class="section-body" style="color:var(--g4); max-width:600px;">
+          <p>A long-term value system is not simply about "long-termism." It is about how a system continues to create value, sustain coordination, transmit itself, and keep growing through change over time.</p>
+        </div>
+        <div class="lvs-grid">
+          <div class="lvs-card">
+            <div class="lvs-num">01</div>
+            <div class="lvs-card-title">Creation</div>
+            <div class="lvs-card-sub">创造</div>
+            <div class="lvs-card-body">How does an enterprise form genuine brand equity? How does an organization build distinctive core capabilities? How does a platform sustain the willingness of others to participate? Long-term value must first be created — not merely exchanged.</div>
+          </div>
+          <div class="lvs-card">
+            <div class="lvs-num">02</div>
+            <div class="lvs-card-title">Coordination</div>
+            <div class="lvs-card-sub">协同</div>
+            <div class="lvs-card-body">Value is never generated at a single point. It depends on teams, institutions, incentives, processes, trust, and the allocation of responsibility. Without coordination, even the best strategy dissipates in execution.</div>
+          </div>
+          <div class="lvs-card">
+            <div class="lvs-num">03</div>
+            <div class="lvs-card-title">Transmission</div>
+            <div class="lvs-card-sub">传承</div>
+            <div class="lvs-card-body">Mature value should not depend on any single key individual. It must be sedimented, transferred, institutionalized — and sustained across generations. Corporate governance, foundation governance, family succession, and academic training all ultimately address this question.</div>
+          </div>
+          <div class="lvs-card">
+            <div class="lvs-num">04</div>
+            <div class="lvs-card-title">Restructuring</div>
+            <div class="lvs-card-sub">重构</div>
+            <div class="lvs-card-body">Today's world is continuously disrupted by AI, technology, organizational change, and generational shift. A system that cannot restructure itself is unlikely to endure. Long-term value is not rigidly preserving the past — it is continuously renewing one's capacity boundaries through change.</div>
+          </div>
+        </div>
+        <div class="lvs-closing">
+          A long-term value system is not simply about "long-termism"; it is about how a system continues to create value, sustain coordination, transmit itself, and keep growing through change over time.
         </div>
       </div>
+
       <!-- ZH -->
       <div data-lang="zh" class="reveal">
-        <p class="section-label" style="color:var(--gray-3);">关于作者</p>
+        <p class="section-label">框架</p>
         <div class="rule"></div>
-        <h2 class="section-title">关于李晋教授</h2>
-        <div class="section-body" style="color:var(--gray-4);">
-          <p>
-            李晋教授现任香港大学经管学院教授、
-            经济学与战略讲席教授、管理与策略学领域负责人，
-            并担任人工智能、管理与组织中心主任。
-          </p>
-          <p>
-            他的研究位于经济学、组织、激励机制与新兴技术变革的交叉地带。
-          </p>
+        <h2 class="section-title" style="color:var(--white);">什么是长期价值系统？</h2>
+        <div class="section-body" style="color:var(--g4); max-width:600px;">
+          <p>长期价值系统讨论的，不只是"长期主义"，而是一个系统如何在时间中持续创造价值、维持协作、完成传承，并在变化中继续生长。</p>
+        </div>
+        <div class="lvs-grid">
+          <div class="lvs-card">
+            <div class="lvs-num">01</div>
+            <div class="lvs-card-title">创造</div>
+            <div class="lvs-card-sub">Creation</div>
+            <div class="lvs-card-body">一个企业如何形成真正的品牌资产？一个组织如何建立区别于他人的核心能力？一个平台如何让外界持续愿意参与？长期价值首先必须能够被创造，而不只是短期交换。</div>
+          </div>
+          <div class="lvs-card">
+            <div class="lvs-num">02</div>
+            <div class="lvs-card-title">协同</div>
+            <div class="lvs-card-sub">Coordination</div>
+            <div class="lvs-card-body">价值从来不是单点产生的。它依赖团队、制度、激励、流程、信任与责任分配来维持。没有协同，再好的战略都会在执行中流失。</div>
+          </div>
+          <div class="lvs-card">
+            <div class="lvs-num">03</div>
+            <div class="lvs-card-title">传承</div>
+            <div class="lvs-card-sub">Transmission</div>
+            <div class="lvs-card-body">真正成熟的价值，不应只依附于某一个关键人物。它必须能够被沉淀、被传递、被制度化，甚至跨代际延续。企业治理、基金会治理、家族传承与学术训练，本质上都与这一问题有关。</div>
+          </div>
+          <div class="lvs-card">
+            <div class="lvs-num">04</div>
+            <div class="lvs-card-title">重构</div>
+            <div class="lvs-card-sub">Restructuring</div>
+            <div class="lvs-card-body">今天的世界正被 AI、技术、组织变革与代际变化持续冲击。如果一套系统不能重构，就难以长期存在。长期价值不是僵化地守住过去，而是在变化中不断更新自己的能力边界。</div>
+          </div>
+        </div>
+        <div class="lvs-closing">
+          长期价值系统讨论的，不只是"长期主义"，而是一个系统如何在时间中持续创造价值、维持协作、完成传承，并在变化中继续生长。
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════════
-       SECTION 4 — BOOK
-  ═══════════════════════════════════════════════════════════════ -->
-  <section id="book">
+  <!-- ══════════════════════════════════════════════════════
+       WHY ENTREPRENEURS
+  ══════════════════════════════════════════════════════ -->
+  <section id="why">
     <div class="inner">
-      <div class="book-accent"></div>
+
       <!-- EN -->
       <div data-lang="en" class="reveal">
-        <p class="section-label">The Book</p>
+        <p class="section-label">For Entrepreneurs</p>
         <div class="rule"></div>
-        <h2 class="section-title">About the Book</h2>
+        <h2 class="section-title">Why Entrepreneurs Need to Think in Systems</h2>
         <div class="section-body">
-          <p>This book is not a simple response to the AI wave.</p>
-          <p>
-            It is an attempt to offer a deeper framework for understanding
-            what AI is really changing beneath the surface — not only in tools,
-            but in structures, institutions, and the ways people organize
-            value, knowledge, and action.
-          </p>
-          <p>We also hope that readers will enjoy the book.</p>
+          <p>The real challenge for entrepreneurs is not making growth happen once. It is making growth that does not depend solely on luck, timing, traffic, or individual will.</p>
+          <p>Many enterprises grow fast in their early years through opportunity, instinct, and localized advantage. But over a longer arc, what determines whether they can continue is no longer just market opportunity — it is whether they have built the capacity to continuously create value, the organizational mechanisms to sustain coordination, the institutional design to support trust, the brand and culture that can transmit across cycles, and the ability to restructure their own capability system in the face of technological change.</p>
+          <p>What entrepreneurs truly need to build is not just enterprise scale. It is the enterprise's long-term value system.</p>
         </div>
       </div>
+
       <!-- ZH -->
       <div data-lang="zh" class="reveal">
-        <p class="section-label">这本书</p>
+        <p class="section-label">对企业家而言</p>
         <div class="rule"></div>
-        <h2 class="section-title">关于这本书</h2>
+        <h2 class="section-title">为什么企业家需要理解长期价值系统</h2>
         <div class="section-body">
-          <p>这本书并不是对 AI 浪潮的简单回应。</p>
-          <p>
-            它更试图提供一个更深层的框架，去理解 AI 真正改变的是什么——
-            不仅是工具，更是结构、制度，
-            以及人们组织价值、知识与行动的方式。
-          </p>
-          <p>我们也期待所有读者会喜欢这本书。</p>
+          <p>对于企业家而言，真正的挑战并不是做出一次增长，而是如何让增长不只依赖运气、红利、流量或个人意志。</p>
+          <p>很多企业早期靠机会、直觉、拼劲和局部优势快速发展，但走到更长周期后，真正决定其能否继续走下去的，不再只是市场机会，而是是否拥有持续创造价值的能力、稳定协同的组织机制、支撑信任的制度设计、能够跨周期传递的品牌与文化，以及在技术变化面前持续重构自身能力系统的能力。</p>
+          <p>企业家真正要建立的，不只是企业规模，而是企业的长期价值系统。</p>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════════
-       SECTION 5 — CONTACT
-  ═══════════════════════════════════════════════════════════════ -->
+  <!-- ══════════════════════════════════════════════════════
+       WORK — SIX AREAS
+  ══════════════════════════════════════════════════════ -->
+  <section id="work">
+    <div class="inner-wide">
+
+      <!-- EN -->
+      <div data-lang="en" class="reveal">
+        <p class="section-label">Work &amp; Research</p>
+        <div class="rule"></div>
+        <h2 class="section-title">Six Areas of Focus</h2>
+        <div class="work-grid">
+          <div class="work-card">
+            <div class="work-num">01</div>
+            <div class="work-title">Brand, Marketing<br />and Value Creation</div>
+            <div class="work-sub">品牌、营销与价值创造</div>
+            <div class="work-body">Brand is not merely communication; marketing is not merely placement. The question is how short-term actions are converted into long-term assets — and how AI is reshaping content production, consumer engagement, and commercial efficiency.</div>
+          </div>
+          <div class="work-card">
+            <div class="work-num">02</div>
+            <div class="work-title">Governance and<br />Coordination Mechanisms</div>
+            <div class="work-sub">组织治理与协同机制</div>
+            <div class="work-body">Long-term value must enter organizational structure, mechanisms, and accountability. This includes organizational efficiency, incentive design, platform-based coordination, foundation governance, and the emerging questions of trust and responsibility in human–AI collaboration.</div>
+          </div>
+          <div class="work-card">
+            <div class="work-num">03</div>
+            <div class="work-title">Philanthropy, Foundations<br />and Social Impact</div>
+            <div class="work-sub">公益、基金会与社会影响</div>
+            <div class="work-body">Commercial value that cannot connect to social value rarely achieves lasting legitimacy or influence. This area covers foundation governance, nonprofit institutional design, major giving, ESG, and the sustained impact of educational philanthropy.</div>
+          </div>
+          <div class="work-card">
+            <div class="work-num">04</div>
+            <div class="work-title">Creative Economy, Efficiency<br />and AI Transformation</div>
+            <div class="work-sub">创意产业、商业效率与 AI 转型</div>
+            <div class="work-body">Having spent years inside the creative industry, this work focuses on structural inefficiencies in creative and service sectors, and on how enterprises can genuinely integrate AI into long-term value systems — not merely as a tool layer.</div>
+          </div>
+          <div class="work-card">
+            <div class="work-num">05</div>
+            <div class="work-title">DBA Development and<br />Entrepreneurial Transformation</div>
+            <div class="work-sub">DBA 成长与企业家跃迁</div>
+            <div class="work-body">A DBA is not simply a degree. It is how a mature practitioner elevates experience into knowledge, and converts a career into a longer-term intellectual asset — including topic selection, mentorship, resource allocation, and building lasting knowledge influence after graduation.</div>
+          </div>
+          <div class="work-card">
+            <div class="work-num">06</div>
+            <div class="work-title">Family, Succession and<br />Long-term Transmission</div>
+            <div class="work-sub">家庭、代际与长期传承</div>
+            <div class="work-body">When entrepreneurs enter the next phase, the questions shift: role design, boundary-setting, the distribution of power and responsibility, and how value continues to exist across generations. This is where long-term value systems become most personal.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ZH -->
+      <div data-lang="zh" class="reveal">
+        <p class="section-label">工作与研究</p>
+        <div class="rule"></div>
+        <h2 class="section-title">六个工作方向</h2>
+        <div class="work-grid">
+          <div class="work-card">
+            <div class="work-num">01</div>
+            <div class="work-title">品牌、营销<br />与价值创造</div>
+            <div class="work-sub">Brand, Marketing and Value Creation</div>
+            <div class="work-body">品牌不只是传播，营销不只是投放，而是如何把短期行为转化为长期资产；以及 AI 如何改变内容生产、消费者沟通与商业效率。</div>
+          </div>
+          <div class="work-card">
+            <div class="work-num">02</div>
+            <div class="work-title">组织治理<br />与协同机制</div>
+            <div class="work-sub">Governance and Coordination Mechanisms</div>
+            <div class="work-body">长期价值必须进入组织、机制与责任结构；包括组织效率、激励机制、平台型协作、基金会治理，以及 AI 时代人—人—AI 协作中的责任、信任与分工问题。</div>
+          </div>
+          <div class="work-card">
+            <div class="work-num">03</div>
+            <div class="work-title">公益、基金会<br />与社会影响</div>
+            <div class="work-sub">Philanthropy, Foundations and Social Impact</div>
+            <div class="work-body">商业价值如果不能与社会价值建立关系，就很难在更长周期中获得真正的合法性与影响力；包括基金会治理、非营利组织制度、大额捐赠、ESG 与教育公益的持续影响。</div>
+          </div>
+          <div class="work-card">
+            <div class="work-num">04</div>
+            <div class="work-title">创意产业、商业效率<br />与 AI 转型</div>
+            <div class="work-sub">Creative Economy, Efficiency and AI Transformation</div>
+            <div class="work-body">长期身处创意产业，关注创意与服务行业的低效行为、结构优化，以及企业如何真正把 AI 纳入长期价值系统，而不是停留在工具层面。</div>
+          </div>
+          <div class="work-card">
+            <div class="work-num">05</div>
+            <div class="work-title">DBA 成长<br />与企业家跃迁</div>
+            <div class="work-sub">DBA Development and Entrepreneurial Transformation</div>
+            <div class="work-body">DBA 不只是学位或论文，而是成熟实践者如何把经验提升为知识，把职业转化为更长期的人生资产；包括选题、导师、资源配置，以及毕业后的持续知识影响力建设。</div>
+          </div>
+          <div class="work-card">
+            <div class="work-num">06</div>
+            <div class="work-title">家庭、代际<br />与长期传承</div>
+            <div class="work-sub">Family, Succession and Long-term Transmission</div>
+            <div class="work-body">企业家真正进入下一阶段后，问题不再只是增长，还包括角色安排、边界设计、权力与责任，以及如何让价值跨代际继续存在。</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       PRACTICE & IMPACT
+  ══════════════════════════════════════════════════════ -->
+  <section id="practice">
+    <div class="inner-wide">
+
+      <!-- EN -->
+      <div data-lang="en" class="reveal">
+        <p class="section-label">Practice &amp; Impact</p>
+        <div class="rule"></div>
+        <h2 class="section-title" style="color:var(--white);">Selected Work</h2>
+        <div class="practice-list">
+          <div>
+            <div class="practice-item-title">ROI Festival — Platform Building Since 2008</div>
+            <div class="practice-item-body">Since 2008, Onicek He has founded and continuously developed the ROI Festival (金投赏), building it into one of Asia's most influential platforms for creative and brand practice. This is not simply an award or an event — it is a long-term platform system connecting brands, platforms, agencies, creators, scholars, and managers, establishing shared standards of judgment and a common professional language across the creative industry.</div>
+          </div>
+          <div>
+            <div class="practice-item-title">Foundation &amp; Creative Education</div>
+            <div class="practice-item-body">Building on this foundation, he has further advanced the development of foundation structures and creative education systems — exploring how commercial influence can be converted into lasting capacity for philanthropy, education, and knowledge production.</div>
+          </div>
+          <div>
+            <div class="practice-item-title">Selected Institutions — Corporate</div>
+            <div class="institution-list">P&amp;G · AB InBev · Volkswagen Group · ByteDance Ocean Engine · Google · Baidu · FAW-Audi · PepsiCo · Master Kong · Publicis Groupe · WPP · GIMC</div>
+          </div>
+          <div>
+            <div class="practice-item-title">Selected Institutions — Academic</div>
+            <div class="institution-list">Shanghai Jiao Tong University · Fudan University · Peking University · Tsinghua University · CEIBS · The University of Hong Kong · The Chinese University of Hong Kong · Singapore Management University · Zhejiang University · Central Academy of Fine Arts</div>
+          </div>
+          <div>
+            <div class="practice-item-title">Publications &amp; Works</div>
+            <div class="practice-item-body">Author of <em>Commercial Creativity I / II / III</em>, <em>Brand: The Power of Time</em>, <em>Becoming a DBA</em>, and <em>Behind ROI Festival</em>. Director of the documentaries <em>Commercial Creativity in China</em> and <em>Trust Is Gold</em>, recipient of multiple documentary awards. Also recognized with significant industry honors related to Chinese industrial design research.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ZH -->
+      <div data-lang="zh" class="reveal">
+        <p class="section-label">实践与影响力</p>
+        <div class="rule"></div>
+        <h2 class="section-title" style="color:var(--white);">代表性工作</h2>
+        <div class="practice-list">
+          <div>
+            <div class="practice-item-title">金投赏 ROI Festival — 自 2008 年起</div>
+            <div class="practice-item-body">自 2008 年起，贺欣浩创立并持续推动金投赏 ROI Festival 的发展，将其打造为亚洲具有重要影响力的创意与品牌实践平台之一。这不仅是创建一个奖项或活动，而是长期建立一个平台型系统：连接品牌、平台、代理机构、创作者、学者与管理者，形成持续的评估、筛选、讨论与传播机制，并在创意行业中建立相对稳定的判断标准与公共语言。</div>
+          </div>
+          <div>
+            <div class="practice-item-title">基金会与创意教育</div>
+            <div class="practice-item-body">在此基础上，进一步推动基金会与创意教育体系建设，探索如何将商业影响力转化为更长期的公益、教育与知识生产能力。</div>
+          </div>
+          <div>
+            <div class="practice-item-title">企业合作（部分）</div>
+            <div class="institution-list">宝洁 · 百威英博 · 大众集团 · 字节跳动巨量引擎 · 谷歌 · 百度 · 一汽奥迪 · 百事可乐 · 康师傅 · 阳狮集团 · WPP · GIMC</div>
+          </div>
+          <div>
+            <div class="practice-item-title">高校合作（部分）</div>
+            <div class="institution-list">上海交通大学 · 复旦大学 · 北京大学 · 清华大学 · 中欧国际工商学院 · 香港大学 · 香港中文大学 · 新加坡管理大学 · 浙江大学 · 中央美术学院</div>
+          </div>
+          <div>
+            <div class="practice-item-title">著作与作品</div>
+            <div class="practice-item-body">著有《商业创意 I / II / III》《品牌：时间的力量》《成为 DBA》《金投赏的背后》。担任纪录片导演，拍摄《商业创意在中国》《信任是金》，并获得多个纪录片奖项。此外，也获得过与中国工业设计研究相关的重要行业荣誉。</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       ACADEMIC
+  ══════════════════════════════════════════════════════ -->
+  <section id="academic">
+    <div class="inner">
+
+      <!-- EN -->
+      <div data-lang="en" class="reveal">
+        <p class="section-label">Academic Background</p>
+        <div class="rule"></div>
+        <h2 class="section-title">Training Built on Practice</h2>
+        <div class="section-body">
+          <p>His academic formation did not precede his practice — it deepened and formalized it. Each stage of training was undertaken as a practitioner seeking more rigorous tools to explain what he had already been building.</p>
+        </div>
+        <ul class="edu-list">
+          <li><span class="edu-dot"></span><span>Shanghai Jiao Tong University — Art &amp; Design</span></li>
+          <li><span class="edu-dot"></span><span>DBA — Peking University Guanghua School of Management &amp; HKU Business School (Joint Program)</span></li>
+          <li><span class="edu-dot"></span><span>DBA — China Europe International Business School (CEIBS)</span></li>
+          <li><span class="edu-dot"></span><span>Yale University — Global Innovation Scholar</span></li>
+          <li><span class="edu-dot"></span><span>Columbia University, New York — Visiting Scholar</span></li>
+          <li><span class="edu-dot"></span><span>INSEAD Visiting Scholar Program</span></li>
+        </ul>
+        <div class="section-body" style="margin-top:2rem;">
+          <p>Research areas include brand management, marketing, incentive mechanisms in service industries, organizational coordination, and nonprofit governance. Related research has been published in <em>Management Science</em>, a leading international academic journal.</p>
+        </div>
+      </div>
+
+      <!-- ZH -->
+      <div data-lang="zh" class="reveal">
+        <p class="section-label">学术背景</p>
+        <div class="rule"></div>
+        <h2 class="section-title">实践之后的学术训练</h2>
+        <div class="section-body">
+          <p>他的学术训练并非先于实践，而是在实践之后，以更严谨的方式解释现实世界。每一阶段的学习，都是一位实践者在寻求更精确的工具，去理解他已经在做的事情。</p>
+        </div>
+        <ul class="edu-list">
+          <li><span class="edu-dot"></span><span>上海交通大学 — 艺术设计专业</span></li>
+          <li><span class="edu-dot"></span><span>北京大学光华管理学院与香港大学经管学院联合 DBA</span></li>
+          <li><span class="edu-dot"></span><span>中欧国际工商学院（CEIBS）DBA</span></li>
+          <li><span class="edu-dot"></span><span>耶鲁大学全球创新学者</span></li>
+          <li><span class="edu-dot"></span><span>哥伦比亚大学纽约访问学者</span></li>
+          <li><span class="edu-dot"></span><span>INSEAD Visiting Scholar Program</span></li>
+        </ul>
+        <div class="section-body" style="margin-top:2rem;">
+          <p>研究方向包括品牌管理、市场营销、服务行业激励机制、组织协作与非营利治理。相关研究成果发表于国际顶级学术期刊 <em>Management Science</em>。</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       WHY ONICEK
+  ══════════════════════════════════════════════════════ -->
+  <section id="onicek">
+    <div class="inner">
+
+      <!-- EN -->
+      <div data-lang="en" class="reveal">
+        <p class="section-label">Why Onicek</p>
+        <div class="rule"></div>
+        <div class="onicek-word">
+          <span class="hi">O</span>nice<span class="hi">k</span>
+        </div>
+        <h2 class="section-title">A Name With a Process Inside It</h2>
+        <div class="section-body">
+          <p>Onicek is a name I created and have used for a long time. It is unusual, distinctive — and it carries a sense of process that I identify with.</p>
+          <p>I think of it this way: <strong>O</strong> and <strong>K</strong> are the beginning and the result. <em>Nice</em> is the process.</p>
+          <p>Most things worth building over the long term do not start out "OK." They require a process — one that untangles complexity, organizes people, and sediments value over time. That is what I have always been doing.</p>
+        </div>
+      </div>
+
+      <!-- ZH -->
+      <div data-lang="zh" class="reveal">
+        <p class="section-label">关于 Onicek</p>
+        <div class="rule"></div>
+        <div class="onicek-word">
+          <span class="hi">O</span>nice<span class="hi">k</span>
+        </div>
+        <h2 class="section-title">一个名字里藏着一个过程</h2>
+        <div class="section-body">
+          <p>Onicek 是我自己创造并长期使用的名字。它独特、少见，也承载着一种我认同的过程意识。</p>
+          <p>我喜欢把它理解为：<strong>O</strong> 与 <strong>K</strong> 是起点和结果，<em>Nice</em> 是过程。</p>
+          <p>很多值得长期建立的事，都不是一开始就"OK"的。它们需要一个把混乱梳理清楚、把人组织起来、把价值沉淀下来的过程。这也是我一直在做的事情。</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       CONTACT
+  ══════════════════════════════════════════════════════ -->
   <section id="contact">
-    <div class="inner" style="text-align:center; padding-bottom: 5rem;">
+    <div class="inner">
+
       <!-- EN -->
       <div data-lang="en" class="reveal">
-        <p class="section-label" style="color:var(--gray-3);">Contact</p>
+        <p class="section-label">Contact</p>
         <div class="rule"></div>
-        <h2 class="section-title">Contact</h2>
-        <p class="contact-label">For inquiries, please contact:</p>
-        <a class="contact-email" href="mailto:jli1@hku.hk">jli1@hku.hk</a>
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="section-body" style="color:var(--g4);">
+          <p>Open to conversations around the following:</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-tag">Speaking</div>
+          <div class="contact-tag">Teaching</div>
+          <div class="contact-tag">Research Collaboration</div>
+          <div class="contact-tag">Advisory</div>
+          <div class="contact-tag">Institutional Cooperation</div>
+        </div>
+        <p style="font-family:var(--sans); font-size:0.78rem; font-weight:300; color:var(--g3); margin-bottom:1rem;">For inquiries, please write to:</p>
+        <a class="contact-email" href="mailto:onicekhe@gmail.com">onicekhe@gmail.com</a>
       </div>
+
       <!-- ZH -->
       <div data-lang="zh" class="reveal">
-        <p class="section-label" style="color:var(--gray-3);">联系</p>
+        <p class="section-label">联系</p>
         <div class="rule"></div>
-        <h2 class="section-title">联系</h2>
-        <p class="contact-label">如需联系，请发送邮件至：</p>
-        <a class="contact-email" href="mailto:jli1@hku.hk">jli1@hku.hk</a>
+        <h2 class="section-title">欢迎联系</h2>
+        <div class="section-body" style="color:var(--g4);">
+          <p>欢迎就以下方向展开对话：</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-tag">演讲与分享</div>
+          <div class="contact-tag">教学合作</div>
+          <div class="contact-tag">研究合作</div>
+          <div class="contact-tag">顾问咨询</div>
+          <div class="contact-tag">机构合作</div>
+        </div>
+        <p style="font-family:var(--sans); font-size:0.78rem; font-weight:300; color:var(--g3); margin-bottom:1rem;">如需联系，请发送邮件至：</p>
+        <a class="contact-email" href="mailto:onicekhe@gmail.com">onicekhe@gmail.com</a>
       </div>
+
     </div>
   </section>
 
-  <!-- ── Footer ─────────────────────────────────────────────────── -->
+  <!-- ── Footer ── -->
   <footer>
-    <p class="footer-name">Great Compression AI</p>
-    <p class="footer-copy">
-      <span data-lang="en">&copy; 2025 &nbsp;·&nbsp; All rights reserved</span>
-      <span data-lang="zh">&copy; 2025 &nbsp;·&nbsp; 保留所有权利</span>
-    </p>
+    <span class="footer-name">Onicek He</span>
+    <span class="footer-copy">
+      <span data-lang="en">&copy; 2025 &nbsp;·&nbsp; onicek.com &nbsp;·&nbsp; All rights reserved</span>
+      <span data-lang="zh">&copy; 2025 &nbsp;·&nbsp; onicek.com &nbsp;·&nbsp; 保留所有权利</span>
+    </span>
   </footer>
 
-  <!-- ── Scripts ────────────────────────────────────────────────── -->
   <script>
-    /* ── Language Switch ── */
+    /* ── Language ── */
     function setLang(lang) {
       document.body.classList.toggle('lang-zh', lang === 'zh');
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
       document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
-      localStorage.setItem('gc-lang', lang);
+      localStorage.setItem('ok-lang', lang);
     }
 
     (function () {
-      const saved = localStorage.getItem('gc-lang');
+      const saved = localStorage.getItem('ok-lang');
       if (saved === 'zh') setLang('zh');
     })();
 
+    /* ── Nav scroll ── */
+    const nav = document.getElementById('topnav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
     /* ── Scroll Reveal ── */
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            observer.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.12 }
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      }),
+      { threshold: 0.1 }
     );
-
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
